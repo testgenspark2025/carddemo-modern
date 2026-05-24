@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/carddemo_test
+    username: carddemo
+    password: carddemo
+  flyway:
+    enabled: true
+    clean-disabled: false
+    locations: classpath:db/migration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+
+carddemo:
+  jwt:
+    secret: test-secret-test-secret-test-secret-test-secret-test-secret-test
+    expiration-minutes: 5
+  data:
+    acct: file:/home/factory-user/repos/carddemo/app/data/ASCII/acctdata.txt
+    cust: file:/home/factory-user/repos/carddemo/app/data/ASCII/custdata.txt
+    xref: file:/home/factory-user/repos/carddemo/app/data/ASCII/cardxref.txt
+    discgrp: file:/home/factory-user/repos/carddemo/app/data/ASCII/discgrp.txt
+    tcatbal: file:/home/factory-user/repos/carddemo/app/data/ASCII/tcatbal.txt
