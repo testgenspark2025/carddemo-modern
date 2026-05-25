@@ -31,7 +31,13 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(reg -> reg
-                .requestMatchers("/api/auth/**", "/actuator/health").permitAll()
+                .requestMatchers(
+                    "/api/auth/**",
+                    "/actuator/health",
+                    "/", "/index.html", "/login", "/accounts/**",
+                    "/assets/**", "/favicon.ico", "/vite.svg",
+                    "/*.js", "/*.css", "/*.svg", "/*.ico", "/*.png")
+                .permitAll()
                 .anyRequest().authenticated())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

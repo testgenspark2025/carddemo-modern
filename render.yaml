@@ -1,0 +1,40 @@
+databases:
+  - name: carddemo-db
+    plan: free
+    databaseName: carddemo
+    user: carddemo
+
+services:
+  - type: web
+    name: carddemo-modern
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: carddemo-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: carddemo-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: carddemo-db
+          property: database
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: carddemo-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: carddemo-db
+          property: password
+      - key: CARDDEMO_JWT_SECRET
+        generateValue: true
+      - key: CARDDEMO_DATA_DIR
+        value: file:/app/data

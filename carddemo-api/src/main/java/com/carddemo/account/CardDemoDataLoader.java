@@ -49,16 +49,11 @@ public class CardDemoDataLoader implements CommandLineRunner {
     private final DisclosureGroupRepository discgrps;
     private final TranCatBalanceRepository tcatbals;
 
-    @Value("${carddemo.data.acct:file:/home/factory-user/repos/carddemo/app/data/ASCII/acctdata.txt}")
-    private String acctPath;
-    @Value("${carddemo.data.cust:file:/home/factory-user/repos/carddemo/app/data/ASCII/custdata.txt}")
-    private String custPath;
-    @Value("${carddemo.data.xref:file:/home/factory-user/repos/carddemo/app/data/ASCII/cardxref.txt}")
-    private String xrefPath;
-    @Value("${carddemo.data.discgrp:file:/home/factory-user/repos/carddemo/app/data/ASCII/discgrp.txt}")
-    private String discgrpPath;
-    @Value("${carddemo.data.tcatbal:file:/home/factory-user/repos/carddemo/app/data/ASCII/tcatbal.txt}")
-    private String tcatbalPath;
+    @Value("${carddemo.data.acct}") private String acctPath;
+    @Value("${carddemo.data.cust}") private String custPath;
+    @Value("${carddemo.data.xref}") private String xrefPath;
+    @Value("${carddemo.data.discgrp}") private String discgrpPath;
+    @Value("${carddemo.data.tcatbal}") private String tcatbalPath;
 
     public CardDemoDataLoader(ResourceLoader rl,
                               CustomerRepository customers,

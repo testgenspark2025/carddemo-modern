@@ -1,8 +1,10 @@
-target/
-node_modules/
-dist/
+*.iml
 *.log
+.DS_Store
 .idea/
 .vscode/
-*.iml
-.DS_Store
+carddemo-api/src/main/resources/static/
+dist/
+frontend/dist/
+node_modules/
+target/

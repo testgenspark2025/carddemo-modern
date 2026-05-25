@@ -2,9 +2,9 @@ spring:
   application:
     name: carddemo-api
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/carddemo
-    username: carddemo
-    password: carddemo
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/carddemo}
+    username: ${SPRING_DATASOURCE_USERNAME:carddemo}
+    password: ${SPRING_DATASOURCE_PASSWORD:carddemo}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -25,14 +25,21 @@ spring:
       enabled: false
 
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 carddemo:
   jwt:
-    secret: change-me-to-a-long-random-base64-secret-at-least-256-bits-long-please
-    expiration-minutes: 60
+    secret: ${CARDDEMO_JWT_SECRET:change-me-to-a-long-random-base64-secret-at-least-256-bits-long-please}
+    expiration-minutes: ${CARDDEMO_JWT_EXPIRY_MIN:60}
+  data:
+    dir: ${CARDDEMO_DATA_DIR:file:/home/factory-user/repos/carddemo/app/data/ASCII}
+    acct: ${carddemo.data.dir}/acctdata.txt
+    cust: ${carddemo.data.dir}/custdata.txt
+    xref: ${carddemo.data.dir}/cardxref.txt
+    discgrp: ${carddemo.data.dir}/discgrp.txt
+    tcatbal: ${carddemo.data.dir}/tcatbal.txt
 
 logging:
   level:
     org.springframework.security: INFO
-    com.carddemo: DEBUG
+    com.carddemo: INFO
